@@ -22,6 +22,9 @@ Route::post('products', 'App\Http\Controllers\ProductController@store');
 Route::put('products/{id}', 'App\Http\Controllers\ProductController@update');
 Route::delete('products/{id}', 'App\Http\Controllers\ProductController@delete');
 
+Route::post('login', 'App\Http\Controllers\Auth\LoginController@login');
+Route::post('logout', 'App\Http\Controllers\Auth\LoginController@logout');
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
