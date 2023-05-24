@@ -16,6 +16,12 @@ Route::post('warehouses', 'App\Http\Controllers\WarehouseController@store');
 Route::put('warehouses/{id}', 'App\Http\Controllers\WarehouseController@update');
 Route::delete('warehouses/{id}', 'App\Http\Controllers\WarehouseController@delete');
 
+Route::get('products', 'App\Http\Controllers\ProductController@index');
+Route::get('products/{id}', 'App\Http\Controllers\ProductController@show');
+Route::post('products', 'App\Http\Controllers\ProductController@store');
+Route::put('products/{id}', 'App\Http\Controllers\ProductController@update');
+Route::delete('products/{id}', 'App\Http\Controllers\ProductController@delete');
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
