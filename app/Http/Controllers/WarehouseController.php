@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Warehouse;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\WarehouseStoreRequest;
 use Illuminate\Http\Request;
 
 class WarehouseController extends Controller
@@ -25,24 +26,9 @@ class WarehouseController extends Controller
         return Warehouse::find($id);
     }
 
-    public function store(Request $request)
+    public function store(WarehouseStoreRequest $request)
     {
+        $validated = $request->validated();
         return Warehouse::create($request->all());
-    }
-
-    public function update(Request $request, $id)
-    {
-        $warehouse = Warehouse::findOrFail($id);
-        $warehouse->update($request->all());
-
-        return $warehouse;
-    }
-
-    public function delete(Request $request, $id)
-    {
-        $warehouse = Warehouse::findOrFail($id);
-        $warehouse->delete();
-
-        return 204;
     }
 }

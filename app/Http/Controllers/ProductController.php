@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProductStoreRequest;
 
 class ProductController extends Controller
 {
@@ -25,24 +26,9 @@ class ProductController extends Controller
         return Product::find($id);
     }
 
-    public function store(Request $request)
+    public function store(ProductStoreRequest $request)
     {
+        $validated = $request->validated();
         return Product::create($request->all());
-    }
-
-    public function update(Request $request, $id)
-    {
-        $warehouse = Product::findOrFail($id);
-        $warehouse->update($request->all());
-
-        return $warehouse;
-    }
-
-    public function delete(Request $request, $id)
-    {
-        $warehouse = Product::findOrFail($id);
-        $warehouse->delete();
-
-        return 204;
     }
 }

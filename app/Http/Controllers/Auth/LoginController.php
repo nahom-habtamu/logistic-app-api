@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\Http\Requests\LoginRequest;
+
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Auth;
@@ -30,10 +32,11 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
+        
+        $validated = $request->validated();
         $this->validateLogin($request);
-
         if ($this->attemptLogin($request)) {
             $user = $this->guard()->user();
             $user->generateToken();

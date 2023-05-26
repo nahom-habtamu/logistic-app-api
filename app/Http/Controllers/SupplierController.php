@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Supplier;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SupplierStoreRequest;
 use Illuminate\Http\Request;
 
 class SupplierController extends Controller
@@ -18,24 +19,9 @@ class SupplierController extends Controller
         return Supplier::find($id);
     }
 
-    public function store(Request $request)
+    public function store(SupplierStoreRequest $request)
     {
+        $validated = $request->validated();
         return Supplier::create($request->all());
-    }
-
-    public function update(Request $request, $id)
-    {
-        $supplier = Supplier::findOrFail($id);
-        $supplier->update($request->all());
-
-        return $supplier;
-    }
-
-    public function delete(Request $request, $id)
-    {
-        $supplier = Supplier::findOrFail($id);
-        $supplier->delete();
-
-        return 204;
     }
 }
